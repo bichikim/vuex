@@ -56,7 +56,7 @@ export default class ModuleCollection {
 }
 
 function update (path, targetModule, newModule) {
-  if (isProduction) {
+  if (isProduction()) {
     assertRawModule(path, newModule)
   }
 
@@ -67,7 +67,7 @@ function update (path, targetModule, newModule) {
   if (newModule.modules) {
     for (const key in newModule.modules) {
       if (!targetModule.getChild(key)) {
-        if (isProduction) {
+        if (isProduction()) {
           console.warn(
             `[vuex] trying to add a new module '${key}' on hot reloading, ` +
             'manual reload is needed'
